@@ -92,7 +92,95 @@
     <!-- تذييل الصفحة -->
     <footer class="bg-gray-800 text-white text-center py-6 mt-12">
         <p class="text-sm">جميع الحقوق محفوظة © 2026 - متجر ميكسيكي</p>
-    </footer>
+    </<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة تحكم المالك - المتجر</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background: #f0f2f5; margin: 0; padding: 20px; direction: rtl; }
+        .container { max-width: 500px; margin: 40px auto; background: #fff; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        h2 { text-align: center; color: #1a73e8; margin-bottom: 20px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 8px; font-weight: bold; color: #333; }
+        input[type="text"], input[type="password"] { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; font-size: 14px; }
+        button { background: #1a73e8; color: white; border: none; padding: 12px; border-radius: 6px; cursor: pointer; width: 100%; font-size: 16px; font-weight: bold; transition: background 0.3s; }
+        button:hover { background: #1557b0; }
+        .back-link { display: block; text-align: center; margin-top: 15px; color: #666; text-decoration: none; font-size: 14px; }
+        .back-link:hover { text-decoration: underline; }
+        #adminPanel { display: none; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- شاشة إدخال الرمز السري أولاً -->
+    <div id="loginBox">
+        <h2>🔒 بوابة المالك</h2>
+        <div class="form-group">
+            <label>أدخل رمز الحماية (PIN):</label>
+            <input type="password" id="pinInput" placeholder="أدخل الرمز هنا">
+        </div>
+        <button onclick="checkPin()">دخول لوحة التحكم</button>
+        <a href="index.html" class="back-link">العودة إلى المتجر</a>
+    </div>
+
+    <!-- لوحة التحكم الفعلية (تظهر بعد إدخال الرمز الصحيح) -->
+    <div id="adminPanel">
+        <h2>🛠️ لوحة تحكم المتجر</h2>
+        <div class="form-group">
+            <label>اسم المتجر:</label>
+            <input type="text" id="storeName" value="متجر ميكسيكي">
+        </div>
+        <div class="form-group">
+            <label>اسم المنتج الأول:</label>
+            <input type="text" id="productName" value="اسم المنتج الأول">
+        </div>
+        <div class="form-group">
+            <label>سعر المنتج الأول:</label>
+            <input type="text" id="productPrice" value="15,000 ر.س">
+        </div>
+        <button onclick="saveData()">حفظ التغييرات ونشرها</button>
+        <a href="index.html" class="back-link">عرض المتجر الرئيسي</a>
+    </div>
+</div>
+
+<script>
+    // الرمز السري الخاص بك (يمكنك تغييره إلى أي رقم أو كلمة مرور تفضلها)
+    const SECRET_PIN = "1234";
+
+    function checkPin() {
+        let enteredPin = document.getElementById('pinInput').value;
+        if (enteredPin === SECRET_PIN) {
+            document.getElementById('loginBox').style.display = 'none';
+            document.getElementById('adminPanel').style.display = 'block';
+            
+            // تعبئة الحقول بالبيانات المحفوظة مسبقاً إن وجدت
+            if(localStorage.getItem('storeName')) document.getElementById('storeName').value = localStorage.getItem('storeName');
+            if(localStorage.getItem('productName')) document.getElementById('productName').value = localStorage.getItem('productName');
+            if(localStorage.getItem('productPrice')) document.getElementById('productPrice').value = localStorage.getItem('productPrice');
+        } else {
+            alert("❌ الرمز السري غير صحيح!");
+        }
+    }
+
+    function saveData() {
+        let sName = document.getElementById('storeName').value;
+        let pName = document.getElementById('productName').value;
+        let pPrice = document.getElementById('productPrice').value;
+
+        // حفظ البيانات في ذاكرة المتصفح
+        localStorage.setItem('storeName', sName);
+        localStorage.setItem('productName', pName);
+        localStorage.setItem('productPrice', pPrice);
+
+        alert("✅ تم حفظ التغييرات بنجاح!");
+    }
+</script>
+
+</body>
+</html>
 
 </body>
 </html>
