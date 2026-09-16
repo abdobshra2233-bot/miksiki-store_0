@@ -358,3 +358,167 @@
 
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم الشاملة - متجر الملابس</title>
+    <style>
+        body { font-family: Tahoma, sans-serif; background: #f4f7f6; margin: 0; padding: 20px; }
+        .container { max-width: 600px; margin: auto; background: #fff; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        h2, h3 { text-align: center; color: #2c3e50; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; color: #333; }
+        input[type="text"], input[type="password"] { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; }
+        button { background: #27ae60; color: white; border: none; padding: 12px; border-radius: 6px; cursor: pointer; width: 100%; font-size: 16px; font-weight: bold; }
+        button:hover { background: #219653; }
+        .btn-danger { background: #e74c3c; padding: 6px 12px; width: auto; font-size: 14px; }
+        .btn-danger:hover { background: #c0392b; }
+        .product-item { background: #fdfefe; padding: 12px; border: 1px solid #e2e8f0; border-radius: 8px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
+        .product-item img { width: 50px; height: 50px; object-fit: cover; border-radius: 5px; margin-left: 10px; }
+        .info { display: flex; align-items: center; }
+        #adminPanel { display: none; }
+        .back-link { display: block; text-align: center; margin-top: 20px; color: #3498db; text-decoration: none; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- نافذة قفل الحماية -->
+    <div id="loginBox">
+        <h2>🔒 قفل حماية المالك</h2>
+        <div class="form-group">
+            <label>أدخل رمز الحماية (PIN):</label>
+            <input type="password" id="pinInput" placeholder="الرمز الافتراضي: 1234">
+        </div>
+        <button onclick="checkPin()">دخول لوحة التحكم</button>
+        <a href="index.html" class="back-link">العودة للمتجر الرئيسي</a>
+    </div>
+
+    <!-- لوحة التحكم الكاملة -->
+    <div id="adminPanel">
+        <h2>🛠️ لوحة التحكم في المنتجات والأسعار</h2>
+        
+        <div class="form-group">
+            <label>اسم المنتج (مثال: قميص رجالي فاخر):</label>
+            <input type="text" id="pTitle" placeholder="اسم المنتج">
+        </div>
+        <div class="form-group">
+            <label>السعر (مثال: 15,000 ر.س):</label>
+            <input type="text" id="pPrice" placeholder="السعر">
+        </div>
+        <div class="form-group">
+            <label>المقاسات المتوفرة (مثال: S, M, L, XL):</label>
+            <input type="text" id="pSizes" placeholder="المقاسات">
+        </div>
+        <div class="form-group">
+            <label>رابط صورة المنتج (انسخ رابط أي صورة من الإنترنت):</label>
+            <input type="text" id="pImage" placeholder="https://example.com/image.jpg">
+        </div>
+        <button onclick="addProduct()">➕ إضافة المنتج الجديد للمتجر</button>
+
+        <hr style="margin: 25px 0; border: 0; border-top: 1px solid #eee;">
+
+        <h3>📦 المنتجات الحالية</h3>
+        <div id="adminProductsList"></div>
+
+        <a href="index.html" class="back-link">عرض المتجر الرئيسي</a>
+    </div>
+</div>
+
+<script>
+    const SECRET_PIN = "1234"; // رمز الحماية الخاص بك
+
+    function checkPin() {
+        let pin = document.getElementById('pinInput').value;
+        if (pin === SECRET_PIN) {
+            document.getElementById('loginBox').style.display = 'none';
+            document.getElementById('adminPanel').style.display = 'block';
+            loadAdminProducts();
+        } else {
+            alert("❌ الرمز السري غير صحيح!");
+        }
+    }
+
+    function getProducts() {
+        let data = localStorage.getItem('storeAllProducts');
+        if (data) {
+            return JSON.parse(data);
+        } else {
+            return [
+                { 
+                    title: "تيشيرت صيفي أنيق", 
+                    price: "12,000 ر.س", 
+                    sizes: "S, M, L, XL", 
+                    image: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=500" 
+                }
+            ];
+        }
+    }
+
+    function saveProducts(prods) {
+        localStorage.setItem('storeAllProducts', JSON.stringify(prods));
+    }
+
+    function loadAdminProducts() {
+        let prods = getProducts();
+        let list = document.getElementById('adminProductsList');
+        list.innerHTML = "";
+
+        prods.forEach((p, index) => {
+            list.innerHTML += `
+                <div class="product-item">
+                    <div class="info">
+                        <img src="${p.image || 'https://via.placeholder.com/50'}" alt="صورة">
+                        <div>
+                            <strong>${p.title}</strong><br>
+                            <small>${p.price} | المقاسات: ${p.sizes}</small>
+                        </div>
+                    </div>
+                    <button class="btn-danger" onclick="deleteProduct(${index})">حذف</button>
+                </div>
+            `;
+        });
+    }
+
+    function addProduct() {
+        let title = document.getElementById('pTitle').value;
+        let price = document.getElementById('pPrice').value;
+        let sizes = document.getElementById('pSizes').value;
+        let image = document.getElementById('pImage').value;
+
+        if (!title || !price) {
+            alert("الرجاء إدخال اسم المنتج والسعر على الأقل!");
+            return;
+        }
+
+        let prods = getProducts();
+        prods.push({ 
+            title: title, 
+            price: price, 
+            sizes: sizes || "متاح", 
+            image: image || "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=500" 
+        });
+        saveProducts(prods);
+
+        document.getElementById('pTitle').value = "";
+        document.getElementById('pPrice').value = "";
+        document.getElementById('pSizes').value = "";
+        document.getElementById('pImage').value = "";
+
+        loadAdminProducts();
+        alert("✅ تمت إضافة المنتج ونشره في المتجر بنجاح!");
+    }
+
+    function deleteProduct(index) {
+        let prods = getProducts();
+        prods.splice(index, 1);
+        saveProducts(prods);
+        loadAdminProducts();
+        alert("🗑️ تم حذف المنتج!");
+    }
+</script>
+
+</body>
+</html>
