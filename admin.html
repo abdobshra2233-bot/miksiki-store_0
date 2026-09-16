@@ -70,3 +70,147 @@
     </script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة تحكم متجر الملابس</title>
+    <style>
+        body { font-family: Tahoma, sans-serif; background: #f8f9fa; margin: 0; padding: 20px; }
+        .container { max-width: 600px; margin: auto; background: #fff; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        h2 { text-align: center; color: #2c3e50; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; color: #333; }
+        input[type="text"], input[type="password"] { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; }
+        button { background: #e67e22; color: white; border: none; padding: 12px; border-radius: 6px; cursor: pointer; width: 100%; font-size: 16px; font-weight: bold; }
+        button:hover { background: #d35400; }
+        .btn-danger { background: #e74c3c; padding: 6px 12px; width: auto; font-size: 14px; }
+        .btn-danger:hover { background: #c0392b; }
+        .product-item { background: #fdfefe; padding: 12px; border: 1px solid #e2e8f0; border-radius: 8px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
+        #adminPanel { display: none; }
+        .back-link { display: block; text-align: center; margin-top: 20px; color: #3498db; text-decoration: none; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- بوابة الدخول -->
+    <div id="loginBox">
+        <h2>🔒 قفل حماية المالك</h2>
+        <div class="form-group">
+            <label>أدخل رمز الحماية (PIN):</label>
+            <input type="password" id="pinInput" placeholder="الرمز الافتراضي: 1234">
+        </div>
+        <button onclick="checkPin()">دخول لوحة التحكم</button>
+        <a href="index.html" class="back-link">العودة لمتجر الملابس</a>
+    </div>
+
+    <!-- لوحة التحكم بالملابس -->
+    <div id="adminPanel">
+        <h2>👕 إدارة متجر الملابس</h2>
+        
+        <div class="form-group">
+            <label>اسم قطعة الملابس (مثال: قميص رجالي / فستان):</label>
+            <input type="text" id="clothesTitle" placeholder="اسم المنتج">
+        </div>
+        <div class="form-group">
+            <label>السعر:</label>
+            <input type="text" id="clothesPrice" placeholder="مثال: 12,000 ر.س">
+        </div>
+        <div class="form-group">
+            <label>المقاسات المتوفرة (مفصولة بفاصلة):</label>
+            <input type="text" id="clothesSizes" placeholder="مثال: S, M, L, XL">
+        </div>
+        <button onclick="addClothes()">➕ إضافة قطعة الملابس للمتجر</button>
+
+        <hr style="margin: 25px 0; border: 0; border-top: 1px solid #eee;">
+
+        <h3>📦 قائمة الملابس الحالية</h3>
+        <div id="clothesList"></div>
+
+        <a href="index.html" class="back-link">عرض المتجر الرئيسي</a>
+    </div>
+</div>
+
+<script>
+    const SECRET_PIN = "1234"; // الرمز السري الخاص بك
+
+    function checkPin() {
+        let pin = document.getElementById('pinInput').value;
+        if (pin === SECRET_PIN) {
+            document.getElementById('loginBox').style.display = 'none';
+            document.getElementById('adminPanel').style.display = 'block';
+            loadClothesAdmin();
+        } else {
+            alert("❌ الرمز السري غير صحيح!");
+        }
+    }
+
+    function getClothes() {
+        let items = localStorage.getItem('storeClothes');
+        if (items) {
+            return JSON.parse(items);
+        } else {
+            return [
+                { title: "تيشيرت كاجوال أنيق", price: "10,000 ر.س", sizes: "S, M, L, XL" },
+                { title: "بنطلون جينز عصري", price: "18,000 ر.س", sizes: "30, 32, 34, 36" }
+            ];
+        }
+    }
+
+    function saveClothes(items) {
+        localStorage.setItem('storeClothes', JSON.stringify(items));
+    }
+
+    function loadClothesAdmin() {
+        let items = getClothes();
+        let listDiv = document.getElementById('clothesList');
+        listDiv.innerHTML = "";
+
+        items.forEach((item, index) => {
+            listDiv.innerHTML += `
+                <div class="product-item">
+                    <div>
+                        <strong>${item.title}</strong><br>
+                        <small>السعر: ${item.price} | المقاسات: ${item.sizes}</small>
+                    </div>
+                    <button class="btn-danger" onclick="deleteClothes(${index})">حذف</button>
+                </div>
+            `;
+        });
+    }
+
+    function addClothes() {
+        let title = document.getElementById('clothesTitle').value;
+        let price = document.getElementById('clothesPrice').value;
+        let sizes = document.getElementById('clothesSizes').value;
+
+        if (!title || !price) {
+            alert("الرجاء إدخال اسم المنتج والسعر على الأقل!");
+            return;
+        }
+
+        let items = getClothes();
+        items.push({ title: title, price: price, sizes: sizes || "متاح" });
+        saveClothes(items);
+
+        document.getElementById('clothesTitle').value = "";
+        document.getElementById('clothesPrice').value = "";
+        document.getElementById('clothesSizes').value = "";
+        
+        loadClothesAdmin();
+        alert("✅ تم إضافة قطعة الملابس بنجاح!");
+    }
+
+    function deleteClothes(index) {
+        let items = getClothes();
+        items.splice(index, 1);
+        saveClothes(items);
+        loadClothesAdmin();
+        alert("🗑️ تم حذف المنتج بنجاح!");
+    }
+</script>
+
+</body>
+</html>
