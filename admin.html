@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>متجر ميكسيكي - Miksiki Store</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Cairo', sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- الشريط العلوي -->
+    <header class="bg-blue-600 text-white p-4 shadow-md flex justify-between items-center">
+        <h1 class="text-xl font-bold">🛒 متجر ميكسيكي (Miksiki Store)</h1>
+        <a href="admin.html" class="bg-blue-800 text-white px-3 py-1.5 rounded-lg text-sm font-semibold hover:bg-blue-900 transition">
+            🔐 لوحة المالك
+        </a>
+    </header>
+
+    <!-- المحتوى الرئيسي -->
+    <main class="max-w-4xl mx-auto p-4 mt-6">
+        <section class="text-center mb-8">
+            <h2 class="text-2xl font-bold mb-2">أفضل المنتجات بأفضل الأسعار</h2>
+            <p class="text-gray-600">تصفح منتجاتنا أدناه، واطلب ما يعجبك بضغطة زر واحدة لتصلك تفاصيل الطلب مباشرة عبر الواتساب.</p>
+        </section>
+
+        <h3 class="text-xl font-bold mb-4 border-r-4 border-blue-600 pr-2">منتجاتنا المميزة</h3>
+
+        <!-- شبكة عرض المنتجات -->
+        <div id="storeProductsGrid" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <!-- سيتم تعبئة المنتجات هنا تلقائياً من لوحة التحكم -->
+        </div>
+    </main>
+
+    <script>
+        window.onload = function() {
+            let productsGrid = document.getElementById('storeProductsGrid');
+            
+            // جلب المنتجات المخزنة أو عرض القيمة الافتراضية
+            let savedProducts = localStorage.getItem('storeProducts');
+            let products = savedProducts ? JSON.parse(savedProducts) : [
+                { title: "اسم المنتج الأول", price: "15,000 ر.س" }
+            ];
+
+            productsGrid.innerHTML = "";
+
+            products.forEach(prod => {
+                productsGrid.innerHTML += `
+                    <div class="bg-white p-4 rounded-xl shadow border border-gray-100 flex flex-col justify-between">
+                        <div>
+                            <div class="bg-gray-200 h-40 rounded-lg flex items-center justify-center text-gray-500 mb-3 font-semibold">
+                                صورة المنتج
+                            </div>
+                            <h4 class="font-bold text-lg mb-1">${prod.title}</h4>
+                            <p class="text-sm text-gray-500 mb-3">وصف قصير للمنتج يوضح مميزاته الأساسية للعميل.</p>
+                        </div>
+                        <div class="flex justify-between items-center mt-2">
+                            <span class="text-blue-600 font-bold text-lg">${prod.price}</span>
+                            <a href="https://wa.me/?text=أريد طلب المنتج: ${encodeURIComponent(prod.title)} بسعر ${encodeURIComponent(prod.price)}" target="_blank" class="bg-green-500 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-green-600 transition">
+                                اطلب عبر واتساب
+                            </a>
+                        </div>
+                    </div>
+                `;
+            });
+        };
+    </script>
+</body>
+</html>
