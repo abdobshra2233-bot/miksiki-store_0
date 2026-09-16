@@ -1,1 +1,98 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>متجر ميكسيكي - Miksiki Store</title>
+    <!-- استخدام تصميم جاهز وأنيق عبر Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Cairo', sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
 
+    <!-- شريط العنوان العلوي -->
+    <header class="bg-blue-600 text-white shadow-md">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold">🛍️ متجر ميكسيكي (Miksiki Store)</h1>
+            <span class="text-sm bg-blue-700 px-3 py-1 rounded-full">مرحباً بك</span>
+        </div>
+    </header>
+
+    <!-- قسم الهيرو (ترحيب بالعملاء) -->
+    <section class="bg-white py-12 border-b">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-3 text-gray-900">أفضل المنتجات بأفضل الأسعار</h2>
+            <p class="text-gray-600 max-w-xl mx-auto">تصفح منتجاتنا أدناه، واطلب ما يعجبك بضغطة زر واحدة لتصلك تفاصيل الطلب مباشرة عبر الواتساب.</p>
+        </div>
+    </section>
+
+    <!-- قسم عرض المنتجات -->
+    <main class="container mx-auto px-4 py-10">
+        <h3 class="text-2xl font-bold mb-6 text-gray-800 border-r-4 border-blue-600 pr-3">منتجاتنا المميزة</h3>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            
+            <!-- منتج 1 -->
+            <div class="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100 hover:shadow-md transition">
+                <div class="h-48 bg-gray-200 flex items-center justify-center text-gray-400">
+                    <span>صورة المنتج 1</span>
+                </div>
+                <div class="p-5">
+                    <h4 class="font-bold text-lg mb-1">اسم المنتج الأول</h4>
+                    <p class="text-gray-500 text-sm mb-3">وصف قصير للمنتج يوضح مميزاته الأساسية للعميل.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-blue-600 font-bold text-lg">15,000 د.س</span>
+                        <a href="https://wa.me/249XXXXXXXXX?text=مرحباً، أريد الاستفسار أو طلب (اسم المنتج الأول)" target="_blank" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg text-sm font-semibold transition">
+                            اطلب عبر واتساب
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- منتج 2 -->
+            <div class="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100 hover:shadow-md transition">
+                <div class="h-48 bg-gray-200 flex items-center justify-center text-gray-400">
+                    <span>صورة المنتج 2</span>
+                </div>
+                <div class="p-5">
+                    <h4 class="font-bold text-lg mb-1">اسم المنتج الثاني</h4>
+                    <p class="text-gray-500 text-sm mb-3">وصف قصير للمنتج يوضح مميزاته الأساسية للعميل.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-blue-600 font-bold text-lg">25,000 د.س</span>
+                        <a href="https://wa.me/249XXXXXXXXX?text=مرحباً، أريد الاستفسار أو طلب (اسم المنتج الثاني)" target="_blank" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg text-sm font-semibold transition">
+                            اطلب عبر واتساب
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- منتج 3 -->
+            <div class="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100 hover:shadow-md transition">
+                <div class="h-48 bg-gray-200 flex items-center justify-center text-gray-400">
+                    <span>صورة المنتج 3</span>
+                </div>
+                <div class="p-5">
+                    <h4 class="font-bold text-lg mb-1">اسم المنتج الثالث</h4>
+                    <p class="text-gray-500 text-sm mb-3">وصف قصير للمنتج يوضح مميزاته الأساسية للعميل.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-blue-600 font-bold text-lg">35,000 د.س</span>
+                        <a href="https://wa.me/249XXXXXXXXX?text=مرحباً، أريد الاستفسار أو طلب (اسم المنتج الثالث)" target="_blank" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg text-sm font-semibold transition">
+                            اطلب عبر واتساب
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- تذييل الصفحة -->
+    <footer class="bg-gray-800 text-white text-center py-6 mt-12">
+        <p class="text-sm">جميع الحقوق محفوظة © 2026 - متجر ميكسيكي</p>
+    </footer>
+
+</body>
+</html>
