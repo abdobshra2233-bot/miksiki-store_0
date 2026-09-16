@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>متجر ميكسيكي - Miksiki Store</title>
-    <!-- استخدام تصميم جاهز وأنيق عبر Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
@@ -13,174 +12,61 @@
 </head>
 <body class="bg-gray-50 text-gray-800">
 
-    <!-- شريط العنوان العلوي -->
-    <header class="bg-blue-600 text-white shadow-md">
-        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <h1 class="text-2xl font-bold">🛍️ متجر ميكسيكي (Miksiki Store)</h1>
-            <span class="text-sm bg-blue-700 px-3 py-1 rounded-full">مرحباً بك</span>
-        </div>
+    <!-- الشريط العلوي -->
+    <header class="bg-blue-600 text-white p-4 shadow-md flex justify-between items-center">
+        <h1 class="text-xl font-bold">🛒 متجر ميكسيكي (Miksiki Store)</h1>
+        <a href="admin.html" class="bg-blue-800 text-white px-3 py-1.5 rounded-lg text-sm font-semibold hover:bg-blue-900 transition">
+            🔐 لوحة المالك
+        </a>
     </header>
 
-    <!-- قسم الهيرو (ترحيب بالعملاء) -->
-    <section class="bg-white py-12 border-b">
-        <div class="container mx-auto px-4 text-center">
-            <h2 class="text-3xl font-bold mb-3 text-gray-900">أفضل المنتجات بأفضل الأسعار</h2>
-            <p class="text-gray-600 max-w-xl mx-auto">تصفح منتجاتنا أدناه، واطلب ما يعجبك بضغطة زر واحدة لتصلك تفاصيل الطلب مباشرة عبر الواتساب.</p>
-        </div>
-    </section>
+    <!-- المحتوى الرئيسي -->
+    <main class="max-w-4xl mx-auto p-4 mt-6">
+        <section class="text-center mb-8">
+            <h2 class="text-2xl font-bold mb-2">أفضل المنتجات بأفضل الأسعار</h2>
+            <p class="text-gray-600">تصفح منتجاتنا أدناه، واطلب ما يعجبك بضغطة زر واحدة لتصلك تفاصيل الطلب مباشرة عبر الواتساب.</p>
+        </section>
 
-    <!-- قسم عرض المنتجات -->
-    <main class="container mx-auto px-4 py-10">
-        <h3 class="text-2xl font-bold mb-6 text-gray-800 border-r-4 border-blue-600 pr-3">منتجاتنا المميزة</h3>
-        
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            
-            <!-- منتج 1 -->
-            <div class="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100 hover:shadow-md transition">
-                <div class="h-48 bg-gray-200 flex items-center justify-center text-gray-400">
-                    <span>صورة المنتج 1</span>
-                </div>
-                <div class="p-5">
-                    <h4 class="font-bold text-lg mb-1">اسم المنتج الأول</h4>
-                    <p class="text-gray-500 text-sm mb-3">وصف قصير للمنتج يوضح مميزاته الأساسية للعميل.</p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-blue-600 font-bold text-lg">15,000 د.س</span>
-                        <a href="https://wa.me/249XXXXXXXXX?text=مرحباً، أريد الاستفسار أو طلب (اسم المنتج الأول)" target="_blank" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg text-sm font-semibold transition">
-                            اطلب عبر واتساب
-                        </a>
-                    </div>
-                </div>
-            </div>
+        <h3 class="text-xl font-bold mb-4 border-r-4 border-blue-600 pr-2">منتجاتنا المميزة</h3>
 
-            <!-- منتج 2 -->
-            <div class="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100 hover:shadow-md transition">
-                <div class="h-48 bg-gray-200 flex items-center justify-center text-gray-400">
-                    <span>صورة المنتج 2</span>
-                </div>
-                <div class="p-5">
-                    <h4 class="font-bold text-lg mb-1">اسم المنتج الثاني</h4>
-                    <p class="text-gray-500 text-sm mb-3">وصف قصير للمنتج يوضح مميزاته الأساسية للعميل.</p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-blue-600 font-bold text-lg">25,000 د.س</span>
-                        <a href="https://wa.me/249XXXXXXXXX?text=مرحباً، أريد الاستفسار أو طلب (اسم المنتج الثاني)" target="_blank" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg text-sm font-semibold transition">
-                            اطلب عبر واتساب
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- منتج 3 -->
-            <div class="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100 hover:shadow-md transition">
-                <div class="h-48 bg-gray-200 flex items-center justify-center text-gray-400">
-                    <span>صورة المنتج 3</span>
-                </div>
-                <div class="p-5">
-                    <h4 class="font-bold text-lg mb-1">اسم المنتج الثالث</h4>
-                    <p class="text-gray-500 text-sm mb-3">وصف قصير للمنتج يوضح مميزاته الأساسية للعميل.</p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-blue-600 font-bold text-lg">35,000 د.س</span>
-                        <a href="https://wa.me/249XXXXXXXXX?text=مرحباً، أريد الاستفسار أو طلب (اسم المنتج الثالث)" target="_blank" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg text-sm font-semibold transition">
-                            اطلب عبر واتساب
-                        </a>
-                    </div>
-                </div>
-            </div>
-
+        <!-- شبكة عرض المنتجات -->
+        <div id="storeProductsGrid" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <!-- سيتم تعبئة المنتجات هنا تلقائياً من لوحة التحكم -->
         </div>
     </main>
 
-    <!-- تذييل الصفحة -->
-    <footer class="bg-gray-800 text-white text-center py-6 mt-12">
-        <p class="text-sm">جميع الحقوق محفوظة © 2026 - متجر ميكسيكي</p>
-    </<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>لوحة تحكم المالك - المتجر</title>
-    <style>
-        body { font-family: 'Segoe UI', Tahoma, sans-serif; background: #f0f2f5; margin: 0; padding: 20px; direction: rtl; }
-        .container { max-width: 500px; margin: 40px auto; background: #fff; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-        h2 { text-align: center; color: #1a73e8; margin-bottom: 20px; }
-        .form-group { margin-bottom: 15px; }
-        label { display: block; margin-bottom: 8px; font-weight: bold; color: #333; }
-        input[type="text"], input[type="password"] { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; font-size: 14px; }
-        button { background: #1a73e8; color: white; border: none; padding: 12px; border-radius: 6px; cursor: pointer; width: 100%; font-size: 16px; font-weight: bold; transition: background 0.3s; }
-        button:hover { background: #1557b0; }
-        .back-link { display: block; text-align: center; margin-top: 15px; color: #666; text-decoration: none; font-size: 14px; }
-        .back-link:hover { text-decoration: underline; }
-        #adminPanel { display: none; }
-    </style>
-</head>
-<body>
-
-<div class="container">
-    <!-- شاشة إدخال الرمز السري أولاً -->
-    <div id="loginBox">
-        <h2>🔒 بوابة المالك</h2>
-        <div class="form-group">
-            <label>أدخل رمز الحماية (PIN):</label>
-            <input type="password" id="pinInput" placeholder="أدخل الرمز هنا">
-        </div>
-        <button onclick="checkPin()">دخول لوحة التحكم</button>
-        <a href="index.html" class="back-link">العودة إلى المتجر</a>
-    </div>
-
-    <!-- لوحة التحكم الفعلية (تظهر بعد إدخال الرمز الصحيح) -->
-    <div id="adminPanel">
-        <h2>🛠️ لوحة تحكم المتجر</h2>
-        <div class="form-group">
-            <label>اسم المتجر:</label>
-            <input type="text" id="storeName" value="متجر ميكسيكي">
-        </div>
-        <div class="form-group">
-            <label>اسم المنتج الأول:</label>
-            <input type="text" id="productName" value="اسم المنتج الأول">
-        </div>
-        <div class="form-group">
-            <label>سعر المنتج الأول:</label>
-            <input type="text" id="productPrice" value="15,000 ر.س">
-        </div>
-        <button onclick="saveData()">حفظ التغييرات ونشرها</button>
-        <a href="index.html" class="back-link">عرض المتجر الرئيسي</a>
-    </div>
-</div>
-
-<script>
-    // الرمز السري الخاص بك (يمكنك تغييره إلى أي رقم أو كلمة مرور تفضلها)
-    const SECRET_PIN = "1234";
-
-    function checkPin() {
-        let enteredPin = document.getElementById('pinInput').value;
-        if (enteredPin === SECRET_PIN) {
-            document.getElementById('loginBox').style.display = 'none';
-            document.getElementById('adminPanel').style.display = 'block';
+    <script>
+        window.onload = function() {
+            let productsGrid = document.getElementById('storeProductsGrid');
             
-            // تعبئة الحقول بالبيانات المحفوظة مسبقاً إن وجدت
-            if(localStorage.getItem('storeName')) document.getElementById('storeName').value = localStorage.getItem('storeName');
-            if(localStorage.getItem('productName')) document.getElementById('productName').value = localStorage.getItem('productName');
-            if(localStorage.getItem('productPrice')) document.getElementById('productPrice').value = localStorage.getItem('productPrice');
-        } else {
-            alert("❌ الرمز السري غير صحيح!");
-        }
-    }
+            // جلب المنتجات المخزنة أو عرض القيمة الافتراضية
+            let savedProducts = localStorage.getItem('storeProducts');
+            let products = savedProducts ? JSON.parse(savedProducts) : [
+                { title: "اسم المنتج الأول", price: "15,000 ر.س" }
+            ];
 
-    function saveData() {
-        let sName = document.getElementById('storeName').value;
-        let pName = document.getElementById('productName').value;
-        let pPrice = document.getElementById('productPrice').value;
+            productsGrid.innerHTML = "";
 
-        // حفظ البيانات في ذاكرة المتصفح
-        localStorage.setItem('storeName', sName);
-        localStorage.setItem('productName', pName);
-        localStorage.setItem('productPrice', pPrice);
-
-        alert("✅ تم حفظ التغييرات بنجاح!");
-    }
-</script>
-
-</body>
-</html>
-
+            products.forEach(prod => {
+                productsGrid.innerHTML += `
+                    <div class="bg-white p-4 rounded-xl shadow border border-gray-100 flex flex-col justify-between">
+                        <div>
+                            <div class="bg-gray-200 h-40 rounded-lg flex items-center justify-center text-gray-500 mb-3 font-semibold">
+                                صورة المنتج
+                            </div>
+                            <h4 class="font-bold text-lg mb-1">${prod.title}</h4>
+                            <p class="text-sm text-gray-500 mb-3">وصف قصير للمنتج يوضح مميزاته الأساسية للعميل.</p>
+                        </div>
+                        <div class="flex justify-between items-center mt-2">
+                            <span class="text-blue-600 font-bold text-lg">${prod.price}</span>
+                            <a href="https://wa.me/?text=أريد طلب المنتج: ${encodeURIComponent(prod.title)} بسعر ${encodeURIComponent(prod.price)}" target="_blank" class="bg-green-500 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-green-600 transition">
+                                اطلب عبر واتساب
+                            </a>
+                        </div>
+                    </div>
+                `;
+            });
+        };
+    </script>
 </body>
 </html>
